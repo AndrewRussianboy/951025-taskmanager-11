@@ -31,3 +31,7 @@ export const render = (container, element, place) => {
       break;
   }
 };
+
+export const getRandomInt = (min, max) => {
+  return min + Math.floor(Math.random() * (max - min));
+};
