@@ -9,7 +9,7 @@ import SiteMenuComponent from "./components/site-menu.js";
 import SortComponent from "./components/sorting.js";
 import {generateTasks} from "./mock/task.js";
 import {generateFilters} from "./mock/filter.js";
-import {render, RenderPosition} from "./utils.js";
+import {render, RenderPosition, getRandomInt} from "./utils.js";
 
 const TASK_COUNT = 22;
 const SHOWING_TASKS_COUNT_ON_START = 8;
@@ -52,9 +52,9 @@ const renderTask = (taskListElement, task) => {
 };
 
 const renderBoard = (boardComponent, tasks) => {
-  const isAllTasksArchiverd = tasks.every((task) => task.isArchive);
+  const isAllTasksArchived = tasks.every((task) => task.isArchive);
 
-  if (isAllTasksArchiverd) {
+  if (isAllTasksArchived) {
     render(boardComponent.getElement(), new NoTasksComponent().getElement(), RenderPosition.BEFOREEND);
     return;
   }
@@ -90,7 +90,14 @@ const renderBoard = (boardComponent, tasks) => {
 const siteMainElement = document.querySelector(`.main`);
 const siteHeaderElement = siteMainElement.querySelector(`.main__control`);
 
-const tasks = generateTasks(TASK_COUNT);
+const isTasksEmpty = () => {
+  if (getRandomInt(0, 2) === 0) {
+    return generateTasks(0);
+  }
+  return generateTasks(TASK_COUNT);
+};
+
+const tasks = isTasksEmpty();
 const filters = generateFilters();
 
 render(siteHeaderElement, new SiteMenuComponent().getElement(), RenderPosition.BEFOREEND);
