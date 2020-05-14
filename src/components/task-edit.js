@@ -58,7 +58,6 @@ const createTaskEditTemplate = (task, options = {}) => {
   const date = (isDateShowing && dueDate) ? `${dueDate.getDate()} ${MONTH_NAMES[dueDate.getMonth()]}` : ``;
   const time = (isDateShowing && dueDate) ? formatTime(dueDate) : ``;
 
-  /* const isRepeatingTask = Object.values(repeatingDays).some(Boolean); */
   const repeatClass = isRepeatingTask ? `card--repeat` : ``;
   const deadlineClass = isExpired ? `card--deadline` : ``;
 
@@ -147,7 +146,7 @@ export default class TaskEdit extends AbstractSmartComponent {
 
     this._task = task;
     this._isDateShowing = !!task.dueDate;
-    this._isRepeatingTask = Object.values(task.repeatingDays).some(Boolean);
+    this._isRepeatingTask = isRepeating(task.repeatingDays);
     this._activeRepeatingDays = Object.assign({}, task.repeatingDays);
     this._submitHandler = null;
 
@@ -176,7 +175,7 @@ export default class TaskEdit extends AbstractSmartComponent {
     const task = this._task;
 
     this._isDateShowing = !!task.dueDate;
-    this._isRepeatingTask = Object.values(task.repeatingDays).some(Boolean);
+    this._isRepeatingTask = isRepeating(task.repeatingDays);
     this._activeRepeatingDays = Object.assign({}, task.repeatingDays);
 
     this.rerender();
@@ -211,7 +210,7 @@ export default class TaskEdit extends AbstractSmartComponent {
       repeatDays.addEventListener(`change`, (evt) => {
         this._activeRepeatingDays[evt.target.value] = evt.target.checked;
 
-        this._rerender();
+        this.rerender();
       });
     }
   }
