@@ -1,8 +1,8 @@
 import AbstractComponent from "./abstract-component.js";
 
 export const SortType = {
-  DATE_DOWN: `data-down`,
-  DATE_UP: `data-up`,
+  DATE_DOWN: `date-down`,
+  DATE_UP: `date-up`,
   DEFAULT: `default`,
 };
 
