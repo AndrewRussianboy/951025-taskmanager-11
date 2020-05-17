@@ -154,7 +154,7 @@ export default class TaskEdit extends AbstractSmartComponent {
     this._flatpickr = null;
     this._submitHandler = null;
 
-    this._applyFlatpickr();
+    /* this._applyFlatpickr(); */
     this._subscribeOnEvents();
   }
 
