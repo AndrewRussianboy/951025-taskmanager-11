@@ -28,6 +28,7 @@ export default class TaskController {
     this._taskEditComponent = new TaskEditComponent(task);
 
     this._taskComponent.setEditButtonClickHandler(() => {
+      this._taskEditComponent.applyFlatpickr();
       this._replaceTasktoEdit();
       document.addEventListener(`keydown`, this._onEscKeyDown);
     });

@@ -154,7 +154,6 @@ export default class TaskEdit extends AbstractSmartComponent {
     this._flatpickr = null;
     this._submitHandler = null;
 
-    /* this._applyFlatpickr(); */
     this._subscribeOnEvents();
   }
 
@@ -175,7 +174,7 @@ export default class TaskEdit extends AbstractSmartComponent {
   rerender() {
     super.rerender();
 
-    this._applyFlatpickr();
+    this.applyFlatpickr();
   }
 
   reset() {
@@ -195,7 +194,7 @@ export default class TaskEdit extends AbstractSmartComponent {
     this._submitHandler = handler;
   }
 
-  _applyFlatpickr() {
+  applyFlatpickr() {
     if (this._flatpickr) {
       this._flatpickr.destroy();
       this._flatpickr = null;
